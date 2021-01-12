@@ -1,0 +1,9 @@
+MODEL:
+  WEIGHT: ""
+DATASETS:
+  TRAIN: ("visr_train", )
+SOLVER:
+  BATCH_SIZE: 32
+  LR: 0.02
+TEST:
+  BATCH_SIZE: 32
