@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 import torch
 
-from mumovideo.data.datasets.evaluate import evaluate
+from pymv.data.datasets.evaluate import evaluate
 from ..utils.comm import is_main_process, get_world_size
 from ..utils.comm import all_gather
 from ..utils.comm import synchronize
@@ -45,7 +45,7 @@ def inference(
     # convert to a torch.device for efficiency
     device = torch.device(device)
     num_devices = get_world_size()
-    logger = logging.getLogger("mumovideo.inference")
+    logger = logging.getLogger("pymv.inference")
     dataset = data_loader.dataset
     logger.info("Start evaluation on {} dataset (Size: {}).".format(dataset.__class__.__name__, len(dataset)))
     total_timer = Timer()

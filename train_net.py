@@ -4,15 +4,15 @@ import os
 import torch
 from torch import optim
 
-from mumovideo.config import cfg
-from mumovideo.data import make_data_loader
-from mumovideo.engine.inference import inference
-from mumovideo.engine.trainer import do_train
-from mumovideo.modeling import build_model
-from mumovideo.utils.checkpoint import Checkpointer
-from mumovideo.utils.comm import synchronize, get_rank
-from mumovideo.utils.logger import setup_logger
-from mumovideo.utils.miscellaneous import mkdir, save_config
+from pymv.config import cfg
+from pymv.data import make_data_loader
+from pymv.engine.inference import inference
+from pymv.engine.trainer import do_train
+from pymv.modeling import build_model
+from pymv.utils.checkpoint import Checkpointer
+from pymv.utils.comm import synchronize, get_rank
+from pymv.utils.logger import setup_logger
+from pymv.utils.miscellaneous import mkdir, save_config
 
 def train(cfg, local_rank, distributed, output_dir):
     model = build_model(cfg)
@@ -74,7 +74,7 @@ def train(cfg, local_rank, distributed, output_dir):
     return model
 
 def main():
-    parser = argparse.ArgumentParser(description="mumovideo")
+    parser = argparse.ArgumentParser(description="pymv")
     parser.add_argument(
         "--config-file",
         default="",
@@ -108,7 +108,7 @@ def main():
     if output_dir:
         mkdir(output_dir)
     
-    logger = setup_logger("mumovideo", output_dir, get_rank())
+    logger = setup_logger("pymv", output_dir, get_rank())
     logger.info("Using {} GPUs".format(num_gpus))
     logger.info(args)
 

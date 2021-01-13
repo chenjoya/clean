@@ -7,11 +7,11 @@ from tqdm import tqdm
 import torch
 import torch.distributed as dist
 
-from mumovideo.data import make_data_loader
-from mumovideo.utils.comm import get_world_size, synchronize, reduce_dict, is_main_process
-from mumovideo.utils.metric_logger import MetricLogger
-from mumovideo.engine.inference import inference
-from mumovideo.utils.miscellaneous import mkdir
+from pymv.data import make_data_loader
+from pymv.utils.comm import get_world_size, synchronize, reduce_dict, is_main_process
+from pymv.utils.metric_logger import MetricLogger
+from pymv.engine.inference import inference
+from pymv.utils.miscellaneous import mkdir
 
 def do_train(
     cfg,
@@ -27,7 +27,7 @@ def do_train(
     arguments,
     output_dir,
 ):
-    logger = logging.getLogger("mumovideo.trainer")
+    logger = logging.getLogger("pymv.trainer")
     logger.info("Start training")
     meters = MetricLogger(delimiter="  ")
     max_epoch = cfg.SOLVER.MAX_EPOCH

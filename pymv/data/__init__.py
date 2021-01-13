@@ -2,8 +2,8 @@ import logging
 
 import torch
 
-from mumovideo.utils.comm import get_world_size
-from mumovideo.utils.imports import import_file
+from pymv.utils.comm import get_world_size
+from pymv.utils.imports import import_file
 from . import datasets as D
 from .samplers import DistributedSampler
 from .collate_batch import BatchCollator
@@ -70,7 +70,7 @@ def make_data_loader(cfg, is_train, is_distributed):
         shuffle = False if not is_distributed else True
 
     paths_catalog = import_file(
-        "mumovideo.cfg.paths_catalog", cfg.PATHS_CATALOG, True
+        "pymv.cfg.paths_catalog", cfg.PATHS_CATALOG, True
     )
     DatasetCatalog = paths_catalog.DatasetCatalog
     dataset_list = cfg.DATASETS.TRAIN if is_train else cfg.DATASETS.TEST

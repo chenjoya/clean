@@ -3,17 +3,17 @@ import os
 
 import torch
 
-from mumovideo.config import cfg
-from mumovideo.data import make_data_loader
-from mumovideo.engine.inference import inference
-from mumovideo.modeling import build_model
-from mumovideo.utils.checkpoint import Checkpointer
-from mumovideo.utils.comm import synchronize, get_rank
-from mumovideo.utils.logger import setup_logger
-from mumovideo.utils.miscellaneous import mkdir
+from pymv.config import cfg
+from pymv.data import make_data_loader
+from pymv.engine.inference import inference
+from pymv.modeling import build_model
+from pymv.utils.checkpoint import Checkpointer
+from pymv.utils.comm import synchronize, get_rank
+from pymv.utils.logger import setup_logger
+from pymv.utils.miscellaneous import mkdir
 
 def main():
-    parser = argparse.ArgumentParser(description="mumovideo")
+    parser = argparse.ArgumentParser(description="pymv")
     parser.add_argument(
         "--config-file",
         default="configs/debug.yaml",
@@ -42,7 +42,7 @@ def main():
     cfg.freeze()
 
     save_dir = ""
-    logger = setup_logger("mumovideo", save_dir, get_rank())
+    logger = setup_logger("pymv", save_dir, get_rank())
     logger.info("Using {} GPUs".format(num_gpus))
     logger.info(cfg)
 
